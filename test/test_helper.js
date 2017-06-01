@@ -8,6 +8,7 @@ import chaiJquery from 'chai-jquery';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducers from '../src/reducers';
+import { StaticRouter } from 'react-router-dom';
 
 const dom = new jsdom.JSDOM('<!doctype html><html><body></body></html>');
 global.window = dom.window;
@@ -20,7 +21,9 @@ chaiJquery(chai, chai.util, $);
 function renderComponent(ComponentClass, props = {}, state = {}) {
   const componentInstance =  TestUtils.renderIntoDocument(
     <Provider store={createStore(reducers, state)}>
-      <ComponentClass {...props} />
+        <StaticRouter>
+          <ComponentClass {...props} />
+        </StaticRouter>
     </Provider>
   );
 

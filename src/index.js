@@ -3,19 +3,21 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import reduxThunk from 'redux-thunk';
 
-import App from './components/app';
 import reducers from './reducers';
 import Home from './components/home';
+import Header from './components/header';
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
-      <Switch>
-        <Route path="/" component={Home} />
-      </Switch>
+      <div>
+        <Header />
+        <Route path="/" exact component={Home} />
+      </div>
     </BrowserRouter>
   </Provider>
   , document.querySelector('.container'));
