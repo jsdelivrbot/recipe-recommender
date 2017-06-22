@@ -36,12 +36,13 @@ describe('Header Component', () => {
             searchBar.simulate('change', 'new search');
             expect(searchBar).to.have.value('new search');
         });
-
+/*
         it('resets the value on submit', () => {
             searchBar.simulate('change', 'new search');
             component.find('form').simulate('submit');
             expect(searchBar).to.have.value('');
         });
+        */
 
     });
 

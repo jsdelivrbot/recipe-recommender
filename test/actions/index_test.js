@@ -23,7 +23,7 @@ describe('Actions', () => {
             expect(signOut().payload).to.equal(false);
         });
     });
-
+/*
     describe('Search', () => {
 
         it('has correct type', () => {
@@ -35,5 +35,6 @@ describe('Actions', () => {
         });
 
     });
+    */
 
 });

@@ -1,9 +1,9 @@
-import { browserHistory } from 'react-router-dom';
+import { history } from 'react-router-dom';
 import { SWITCH_AUTH, SEARCH } from './types';
 import axios from 'axios';
 
-const ROOT_URL = 'http://food2fork.com/api';
-const API_KEY = '705d45535be374ffe751c2a227c1760e';
+const ROOT_URL = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes';
+const API_KEY = '5F1UEJR9oEmshASzHiCgVoGfyEx8p1hF9VijsnplTtxoJEGrWG';
 
 export function signIn () {
     return {
@@ -21,21 +21,22 @@ export function signOut () {
 
 export function search (term) {
     return function (dispatch) {
-        axios({
-            url: `${ROOT_URL}/search?key=${API_KEY}&q=${term}`,
+        axios.get(`${ROOT_URL}/search?query=${term}`,{
             headers: {
-                Origin: 'food2fork.com'
+                'X-Mashape-Key': API_KEY
             }
         })
             .then( (response) => {
                 console.log(response.data);
                 dispatch({
                     type: SEARCH,
-                    payload: response.data
+                    payload: response.data.results
                 });
+                console.log('browser should push')
+                history.push('/search');
             })
             .catch( (response) => {
-                console.log(response.data);
+                console.log('catch', response.data);
             });
     }
 }

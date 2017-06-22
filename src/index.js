@@ -8,6 +8,7 @@ import reduxThunk from 'redux-thunk';
 import reducers from './reducers';
 import Home from './components/home';
 import Header from './components/header';
+import Search from './components/search';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 
@@ -16,6 +17,7 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
         <Header />
+        <Route path="/search" exact component={Search} />
         <Route path="/" exact component={Home} />
       </div>
     </BrowserRouter>
